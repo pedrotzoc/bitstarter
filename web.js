@@ -1,11 +1,14 @@
+#!/usr/bin/env node
+
 var express = require('express');
-var app = express();
-var fs = require ("fs");
-app.use(express.logger());
+var fs = require ('fs');
+var htmlfile = "index.html";
+
+var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-  	var text = fs.readFileSync('index.html','utf8');
-	response.send(text);
+  	var html = fs.readFileSync(htmlfile).toString();
+	response.send(html);
 });
 
 var port = process.env.PORT || 8080;
